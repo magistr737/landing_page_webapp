@@ -19,10 +19,10 @@
     <meta property="og:site_name" content="RolePlay Bot">
     <meta property="og:locale" content="ru_RU">
     
-    <!-- Favicon (Встроенная SVG иконка) -->
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgZmlsbD0iIzdjM2FlZCIvPjx0ZXh0IHg9IjUwIiB5PSI1MCIgZm9udC1zaXplPSI2NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zNWVtIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+8J+ktjwvdGV4dD48L3N2Zz4=">
 
-    <!-- Structured Data (Schema.org) для лучшего SEO -->
+    <!-- Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -45,35 +45,25 @@
     }
     </script>
     
-    <!-- Styles -->
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        html, body {
-            overflow-x: hidden; /* Блокируем горизонтальный скролл */
-            width: 100%;
-        }
         :root {
             --primary-color: #7c3aed;
             --secondary-color: #ec4899;
             --dark-bg: #0f0f1e;
             --card-bg: #1a1a2e;
-            --accent-glow: rgba(124, 58, 237, 0.4);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
         }
         
         body {
             font-family: 'Inter', sans-serif;
             background: var(--dark-bg);
             color: #fff;
+            overflow-x: hidden;
         }
         
         .gradient-text {
@@ -83,33 +73,20 @@
             background-clip: text;
         }
         
-        /* Hero Section */
+        /* Hero */
         .hero-section {
             min-height: 100vh;
-            position: relative;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-            padding: 20px 0; /* Добавил отступы для мобилок */
-        }
-        
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
             background: radial-gradient(ellipse at top, rgba(124, 58, 237, 0.15), transparent),
                         radial-gradient(ellipse at bottom, rgba(236, 72, 153, 0.15), transparent);
         }
         
-        .hero-particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none; /* Чтобы частицы не перекрывали клики */
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            text-shadow: 0 0 30px rgba(124, 58, 237, 0.4);
         }
         
+        /* Particles */
         .particle {
             position: absolute;
             width: 3px;
@@ -126,47 +103,23 @@
             66% { transform: translateY(-50px) translateX(-50px); }
         }
         
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .hero-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(2rem, 8vw, 5rem); /* Немного уменьшил мин. размер */
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 0 30px var(--accent-glow);
-        }
-        
-        .hero-subtitle {
-            font-size: clamp(1rem, 2vw, 1.5rem);
-            color: #b8b8d1;
-            margin-bottom: 2rem;
-            font-weight: 300;
-        }
-        
+        /* CTA Button */
         .cta-button {
-            display: inline-block;
             padding: 18px 45px;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
             font-size: 1.1rem;
             transition: all 0.3s ease;
             box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+            border: none;
             position: relative;
             overflow: hidden;
-            border: none;
         }
         
         .cta-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 40px rgba(124, 58, 237, 0.6);
-            color: white;
         }
         
         .cta-button::before {
@@ -184,69 +137,12 @@
             left: 100%;
         }
         
-        /* Features Section */
-        .features-section {
-            padding: 80px 0;
-            position: relative;
-        }
-        
-        .section-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(1.8rem, 5vw, 3.5rem);
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-        
-        .section-subtitle {
-            text-align: center;
-            color: #b8b8d1;
-            font-size: 1.2rem;
-            margin-bottom: 5rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 0 15px;
-        }
-        
-        .feature-category {
-            margin-bottom: 80px;
-        }
-        
-        .category-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .category-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            display: inline-block;
-            padding: 15px 30px;
-            background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(236, 72, 153, 0.2));
-            border: 1px solid rgba(124, 58, 237, 0.4);
-            border-radius: 15px;
-        }
-        
-        .category-description {
-            color: #b8b8d1;
-            font-size: 1.1rem;
-            margin-top: 1rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 0 10px;
-        }
-        
+        /* Feature Cards */
         .feature-card {
             background: var(--card-bg);
-            border-radius: 20px;
-            padding: 30px;
-            height: 100%;
             border: 1px solid rgba(124, 58, 237, 0.2);
             transition: all 0.4s ease;
+            height: 100%;
             position: relative;
             overflow: hidden;
         }
@@ -254,10 +150,7 @@
         .feature-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(236, 72, 153, 0.1));
             opacity: 0;
             transition: opacity 0.4s;
@@ -275,74 +168,56 @@
         
         .feature-icon {
             font-size: 3rem;
-            margin-bottom: 1.5rem;
             position: relative;
             z-index: 1;
-            display: inline-block;
         }
         
         .feature-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.35rem;
             font-weight: 700;
-            margin-bottom: 1rem;
             position: relative;
             z-index: 1;
         }
         
         .feature-text {
             color: #b8b8d1;
-            line-height: 1.6;
             position: relative;
             z-index: 1;
-            font-size: 0.95rem;
         }
         
         .feature-highlight {
-            display: inline-block;
             background: rgba(124, 58, 237, 0.2);
-            padding: 5px 12px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            margin-top: 15px;
             border: 1px solid rgba(124, 58, 237, 0.3);
+            font-size: 0.85rem;
         }
         
-        /* Stats Section */
+        /* Category */
+        .category-title {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(236, 72, 153, 0.2));
+            border: 1px solid rgba(124, 58, 237, 0.4);
+        }
+        
+        /* Stats */
         .stats-section {
             background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(236, 72, 153, 0.1));
-            padding: 60px 0;
             border-top: 1px solid rgba(124, 58, 237, 0.3);
             border-bottom: 1px solid rgba(124, 58, 237, 0.3);
         }
         
-        .stat-card {
-            text-align: center;
-            padding: 20px;
-        }
-        
         .stat-number {
             font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
             font-weight: 900;
-            margin-bottom: 0.5rem;
         }
         
         .stat-label {
-            font-size: 1rem;
             color: #b8b8d1;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
         
-        /* CTA Section - ВОТ ТУТ БЫЛА ПРОБЛЕМА */
-        .cta-section {
-            padding: 100px 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
+        /* CTA Section */
         .cta-section::before {
             content: '';
             position: absolute;
@@ -356,31 +231,20 @@
             pointer-events: none;
         }
         
-        .cta-content {
-            position: relative;
-            z-index: 2;
-        }
-        
         /* Footer */
         .footer {
             background: var(--card-bg);
-            padding: 40px 0;
-            text-align: center;
             border-top: 1px solid rgba(124, 58, 237, 0.2);
         }
         
         .footer-text {
             color: #b8b8d1;
-            margin: 0;
         }
         
+        /* Meme Badge */
         .meme-badge {
-            display: inline-block;
             background: rgba(236, 72, 153, 0.2);
             border: 1px solid var(--secondary-color);
-            padding: 15px 25px;
-            border-radius: 50px;
-            font-size: 0.95rem;
             font-weight: 600;
             animation: pulse 2s infinite;
         }
@@ -390,59 +254,26 @@
             50% { transform: scale(1.05); }
         }
         
-        /* Адаптив для маленьких экранов */
+        /* Mobile adaptations */
         @media (max-width: 768px) {
-            .hero-section {
-                text-align: center;
-                min-height: auto;
-                padding: 100px 0 50px 0;
-            }
-            
-            .feature-card {
-                margin-bottom: 15px;
-            }
-            
-            .stat-number {
-                font-size: 2.5rem;
-            }
-            
-            .section-subtitle {
-                margin-bottom: 3rem;
-            }
-            
             .cta-section::before {
-                width: 300px; /* Уменьшаем круг */
+                width: 300px;
                 height: 300px;
             }
-
-            .cta-section {
-                padding: 60px 15px;
-            }
-
-            .row {
-                margin-left: 0;
-                margin-right: 0;
-            }
         }
-
+        
         @media (max-width: 576px) {
             .cta-section::before {
                 width: 250px;
                 height: 250px;
             }
         }
-        
-        .container {
-            max-width: 100%;
-            overflow-x: hidden;
-        }
     </style>
 </head>
 <body>
     <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-bg"></div>
-        <div class="hero-particles">
+    <section class="hero-section d-flex align-items-center position-relative">
+        <div class="position-absolute top-0 start-0 w-100 h-100" style="pointer-events: none;">
             <div class="particle" style="left: 10%; top: 20%; animation-delay: 0s;"></div>
             <div class="particle" style="left: 80%; top: 30%; animation-delay: 2s;"></div>
             <div class="particle" style="left: 60%; top: 60%; animation-delay: 4s;"></div>
@@ -450,20 +281,20 @@
             <div class="particle" style="left: 90%; top: 80%; animation-delay: 8s;"></div>
         </div>
         
-        <div class="container hero-content">
-            <div class="row align-items-center">
+        <div class="container py-5">
+            <div class="row">
                 <div class="col-lg-8 mx-auto text-center">
-                    <h1 class="hero-title">
+                    <h1 class="hero-title display-1 fw-bold mb-4">
                         Создавай персонажей <span class="gradient-text">без границ</span>
                     </h1>
-                    <p class="hero-subtitle">
+                    <p class="fs-5 text-secondary mb-4">
                         Твоя фантазия — единственное ограничение. Передовой AI, дешевые тарифы и куча мемов от разработчиков 🚀
                     </p>
                     <div class="d-flex justify-content-center align-items-center gap-3 flex-wrap">
-                        <a href="https://t.me/RolePlayToPbot?start=web_site" class="cta-button">
+                        <a href="https://t.me/RolePlayToPbot?start=web_site" class="btn cta-button text-white">
                             🤖 Запустить бота
                         </a>
-                        <div class="meme-badge">
+                        <div class="meme-badge rounded-pill px-4 py-3">
                             ⚡ Работает прямо в Telegram
                         </div>
                     </div>
@@ -473,112 +304,112 @@
     </section>
 
     <!-- Features Section -->
-    <section class="features-section">
-        <div class="container">
-            <h2 class="section-title">
+    <section class="py-5">
+        <div class="container py-4">
+            <h2 class="display-3 fw-bold text-center mb-3">
                 Почему <span class="gradient-text">RolePlay Bot</span>?
             </h2>
-            <p class="section-subtitle">
+            <p class="fs-5 text-center text-secondary mb-5 mx-auto" style="max-width: 700px;">
                 Мы создали платформу, где твоя фантазия становится реальностью
             </p>
             
-            <!-- Категория: Возможности создания -->
-            <div class="feature-category">
-                <div class="category-header">
-                    <h3 class="category-title">🎨 Безграничное творчество</h3>
-                    <p class="category-description">
+            <!-- Категория 1 -->
+            <div class="mb-5">
+                <div class="text-center mb-4">
+                    <h3 class="category-title d-inline-block px-4 py-3 rounded-3 fs-4 mb-3">🎨 Безграничное творчество</h3>
+                    <p class="fs-6 text-secondary mx-auto" style="max-width: 600px;">
                         Создавай персонажей и миры любой сложности без ограничений
                     </p>
                 </div>
                 
                 <div class="row g-4">
                     <div class="col-md-6">
-                        <div class="feature-card">
-                            <div class="feature-icon">🎭</div>
-                            <h4 class="feature-title">Любые персонажи</h4>
-                            <p class="feature-text">
+                        <div class="feature-card rounded-4 p-4">
+                            <div class="feature-icon mb-3">🎭</div>
+                            <h4 class="feature-title fs-5 mb-3">Любые персонажи</h4>
+                            <p class="feature-text mb-3">
                                 От героев фэнтези до реалистичных собеседников. Создавай уникальных AI-компаньонов с собственным характером, историей и манерой общения.
                             </p>
-                            <div class="feature-highlight">✓ Общение даже после отклонения модерацией</div>
+                            <div class="feature-highlight rounded-2 px-3 py-2 d-inline-block">✓ Общение даже после отклонения модерацией</div>
                         </div>
                     </div>
                     
                     <div class="col-md-6">
-                        <div class="feature-card">
-                            <div class="feature-icon">🌍</div>
-                            <h4 class="feature-title">Целые вселенные</h4>
-                            <p class="feature-text">
+                        <div class="feature-card rounded-4 p-4">
+                            <div class="feature-icon mb-3">🌍</div>
+                            <h4 class="feature-title fs-5 mb-3">Целые вселенные</h4>
+                            <p class="feature-text mb-3">
                                 Не ограничивайся одним персонажем — создавай полноценные миры с уникальной историей, культурой, правилами и населением!
                             </p>
-                            <div class="feature-highlight">✓ Конструктор миров включен</div>
+                            <div class="feature-highlight rounded-2 px-3 py-2 d-inline-block">✓ Конструктор миров включен</div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Категория: Технологии -->
-            <div class="feature-category">
-                <div class="category-header">
-                    <h3 class="category-title">⚡ Передовые технологии</h3>
-                    <p class="category-description">
+            <!-- Категория 2 -->
+            <div class="mb-5">
+                <div class="text-center mb-4">
+                    <h3 class="category-title d-inline-block px-4 py-3 rounded-3 fs-4 mb-3">⚡ Передовые технологии</h3>
+                    <p class="fs-6 text-secondary mx-auto" style="max-width: 600px;">
                         Используем лучшие AI-модели для реалистичного общения
                     </p>
                 </div>
                 
                 <div class="row g-4">
                     <div class="col-md-6">
-                        <div class="feature-card">
-                            <div class="feature-icon">🧠</div>
-                            <h4 class="feature-title">Современный AI</h4>
-                            <p class="feature-text">
+                        <div class="feature-card rounded-4 p-4">
+                            <div class="feature-icon mb-3">🧠</div>
+                            <h4 class="feature-title fs-5 mb-3">Современный AI</h4>
+                            <p class="feature-text mb-3">
                                 Самые продвинутые модели искусственного интеллекта обеспечивают естественные, осмысленные и увлекательные диалоги с твоими персонажами.
                             </p>
-                            <div class="feature-highlight">✓ Контекстная память до 100К токенов</div>
+                            <div class="feature-highlight rounded-2 px-3 py-2 d-inline-block">✓ Контекстная память до 100К токенов</div>
                         </div>
                     </div>
                     
                     <div class="col-md-6">
-                        <div class="feature-card">
-                            <div class="feature-icon">📱</div>
-                            <h4 class="feature-title">Удобный WebApp</h4>
-                            <p class="feature-text">
+                        <div class="feature-card rounded-4 p-4">
+                            <div class="feature-icon mb-3">📱</div>
+                            <h4 class="feature-title fs-5 mb-3">Удобный WebApp</h4>
+                            <p class="feature-text mb-3">
                                 Современный интерфейс прямо в Telegram. Интуитивно понятное управление, быстрый доступ ко всем функциям — никаких сложных установок!
                             </p>
-                            <div class="feature-highlight">✓ Работает на всех устройствах</div>
+                            <div class="feature-highlight rounded-2 px-3 py-2 d-inline-block">✓ Работает на всех устройствах</div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Категория: Сообщество и цены -->
-            <div class="feature-category">
-                <div class="category-header">
-                    <h3 class="category-title">💎 Выгода и сообщество</h3>
-                    <p class="category-description">
+            <!-- Категория 3 -->
+            <div class="mb-5">
+                <div class="text-center mb-4">
+                    <h3 class="category-title d-inline-block px-4 py-3 rounded-3 fs-4 mb-3">💎 Выгода и сообщество</h3>
+                    <p class="fs-6 text-secondary mx-auto" style="max-width: 600px;">
                         Доступные цены и активное комьюнити
                     </p>
                 </div>
                 
                 <div class="row g-4">
                     <div class="col-md-6">
-                        <div class="feature-card">
-                            <div class="feature-icon">💰</div>
-                            <h4 class="feature-title">Честные тарифы</h4>
-                            <p class="feature-text">
+                        <div class="feature-card rounded-4 p-4">
+                            <div class="feature-icon mb-3">💰</div>
+                            <h4 class="feature-title fs-5 mb-3">Честные тарифы</h4>
+                            <p class="feature-text mb-3">
                                 Качественный AI не должен стоить целое состояние. Мы предлагаем самые доступные цены на рынке при максимальном качестве сервиса.
                             </p>
-                            <div class="feature-highlight">✓ От 179₽ за месяц</div>
+                            <div class="feature-highlight rounded-2 px-3 py-2 d-inline-block">✓ От 179₽ за месяц</div>
                         </div>
                     </div>
                     
                     <div class="col-md-6">
-                        <div class="feature-card">
-                            <div class="feature-icon">👥</div>
-                            <h4 class="feature-title">Живое сообщество</h4>
-                            <p class="feature-text">
+                        <div class="feature-card rounded-4 p-4">
+                            <div class="feature-icon mb-3">👥</div>
+                            <h4 class="feature-title fs-5 mb-3">Живое сообщество</h4>
+                            <p class="feature-text mb-3">
                                 Делись персонажами, получай лайки и попадай в топ! Общий каталог, рейтинги, обсуждения — все для обмена идеями и вдохновением.
                             </p>
-                            <div class="feature-highlight">✓ Топ/Антитоп + куча мемов</div>
+                            <div class="feature-highlight rounded-2 px-3 py-2 d-inline-block">✓ Топ/Антитоп + куча мемов</div>
                         </div>
                     </div>
                 </div>
@@ -587,25 +418,25 @@
     </section>
 
     <!-- Stats Section -->
-    <section class="stats-section">
+    <section class="stats-section py-5">
         <div class="container">
-            <div class="row g-4"> <!-- Added g-4 for mobile spacing -->
+            <div class="row g-4">
                 <div class="col-md-4">
-                    <div class="stat-card">
-                        <div class="stat-number gradient-text">∞</div>
-                        <div class="stat-label">Возможностей</div>
+                    <div class="text-center p-3">
+                        <div class="stat-number display-1 gradient-text">∞</div>
+                        <div class="stat-label fs-6">Возможностей</div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="stat-card">
-                        <div class="stat-number gradient-text">24/7</div>
-                        <div class="stat-label">Доступность</div>
+                    <div class="text-center p-3">
+                        <div class="stat-number display-1 gradient-text">24/7</div>
+                        <div class="stat-label fs-6">Доступность</div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="stat-card">
-                        <div class="stat-number gradient-text">💯</div>
-                        <div class="stat-label">Качество AI</div>
+                    <div class="text-center p-3">
+                        <div class="stat-number display-1 gradient-text">💯</div>
+                        <div class="stat-label fs-6">Качество AI</div>
                     </div>
                 </div>
             </div>
@@ -613,16 +444,16 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content">
-                <h2 class="section-title mb-4">
+    <section class="cta-section position-relative py-5">
+        <div class="container py-5">
+            <div class="text-center position-relative" style="z-index: 2;">
+                <h2 class="display-3 fw-bold mb-4">
                     Готов воплотить <span class="gradient-text">свои идеи</span>?
                 </h2>
-                <p class="hero-subtitle mb-4">
+                <p class="fs-5 text-secondary mb-4">
                     Присоединяйся к RolePlay Bot и начни создавать уже сегодня!
                 </p>
-                <a href="https://t.me/RolePlayToPbot?start=web_site" class="cta-button">
+                <a href="https://t.me/RolePlayToPbot?start=web_site" class="btn cta-button text-white">
                     🚀 Начать прямо сейчас
                 </a>
             </div>
@@ -630,12 +461,12 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p class="footer-text">
+    <footer class="footer py-5">
+        <div class="container text-center">
+            <p class="footer-text mb-2">
                 © 2025 RolePlay Bot. Создано с 💜 и мемами
             </p>
-            <p class="footer-text mt-2">
+            <p class="footer-text">
                 <small>Работает в Telegram | Передовой AI | Безграничная фантазия</small>
             </p>
         </div>
