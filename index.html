@@ -52,6 +52,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
+        html, body {
+            overflow-x: hidden; /* Блокируем горизонтальный скролл */
+            width: 100%;
+        }
         :root {
             --primary-color: #7c3aed;
             --secondary-color: #ec4899;
@@ -70,7 +74,6 @@
             font-family: 'Inter', sans-serif;
             background: var(--dark-bg);
             color: #fff;
-            overflow-x: hidden; /* Глобальная защита от горизонтального скролла */
         }
         
         .gradient-text {
@@ -337,7 +340,7 @@
             padding: 100px 0;
             text-align: center;
             position: relative;
-            overflow: hidden; /* !!! ВАЖНО: Обрезает вылезающий круг !!! */
+            overflow: hidden;
         }
         
         .cta-section::before {
@@ -346,12 +349,11 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 600px; /* Круг большой */
+            width: 600px;
             height: 600px;
             background: radial-gradient(circle, rgba(124, 58, 237, 0.2), transparent);
             border-radius: 50%;
             pointer-events: none;
-            /* На мобильных можно уменьшить круг через медиа-запрос, но overflow:hidden на родителе решает проблему надежнее */
         }
         
         .cta-content {
@@ -409,9 +411,30 @@
             }
             
             .cta-section::before {
-                width: 300px; /* Уменьшаем круг на мобильных для красоты */
+                width: 300px; /* Уменьшаем круг */
                 height: 300px;
             }
+
+            .cta-section {
+                padding: 60px 15px;
+            }
+
+            .row {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .cta-section::before {
+                width: 250px;
+                height: 250px;
+            }
+        }
+        
+        .container {
+            max-width: 100%;
+            overflow-x: hidden;
         }
     </style>
 </head>
