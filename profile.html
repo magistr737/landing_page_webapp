@@ -563,7 +563,48 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
-        const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        // Базовый формат: localpart@domain (localpart 1–64 символа, domain до 253)
+        const emailRe = /^[^\s@]{1,64}@[^\s@]{1,253}$/;
+
+        // Разрешённые почтовые домены
+        const ALLOWED_DOMAINS = new Set([
+            // Google
+            'gmail.com',
+            // Яндекс
+            'yandex.ru', 'yandex.com', 'yandex.by', 'yandex.kz', 'yandex.ua', 'ya.ru',
+            // Mail.ru group
+            'mail.ru', 'inbox.ru', 'bk.ru', 'list.ru', 'internet.ru',
+            // Rambler
+            'rambler.ru', 'ro.ru', 'lenta.ru', 'autorambler.ru', 'myrambler.ru',
+            // Microsoft
+            'outlook.com', 'hotmail.com', 'hotmail.ru', 'live.com', 'live.ru', 'msn.com',
+            // Yahoo
+            'yahoo.com', 'yahoo.ru', 'yahoo.co.uk', 'yahoo.fr', 'yahoo.de',
+            // Apple
+            'icloud.com', 'me.com', 'mac.com',
+            // Proton
+            'protonmail.com', 'protonmail.ch', 'proton.me', 'pm.me',
+            // GMX
+            'gmx.com', 'gmx.de', 'gmx.net',
+            // Другие популярные
+            'mail.com', 'tutanota.com', 'tuta.io', 'zoho.com', 'aol.com',
+        ]);
+
+        function checkEmail(val) {
+            if (!val) return { ok: false, reason: 'empty' };
+            if (!emailRe.test(val)) return { ok: false, reason: 'format' };
+
+            const parts = val.split('@');
+            if (parts.length !== 2) return { ok: false, reason: 'format' };
+
+            const local = parts[0];
+            const domain = parts[1].toLowerCase();
+
+            if (local.length < 1 || local.length > 64) return { ok: false, reason: 'format' };
+            if (!ALLOWED_DOMAINS.has(domain)) return { ok: false, reason: 'domain', domain };
+
+            return { ok: true };
+        }
 
         function validateEmail(input) {
             const val = input.value.trim();
@@ -578,7 +619,8 @@
                 return;
             }
 
-            if (emailRe.test(val)) {
+            const result = checkEmail(val);
+            if (result.ok) {
                 input.classList.add('valid');
                 input.classList.remove('invalid');
                 status.textContent = '✓ Отличный адрес!';
@@ -587,7 +629,11 @@
             } else {
                 input.classList.add('invalid');
                 input.classList.remove('valid');
-                status.textContent = '✗ Введите корректный email';
+                if (result.reason === 'domain') {
+                    status.textContent = `✗ Домен «${result.domain}» не поддерживается. Используйте Gmail, Яндекс, Mail.ru и др.`;
+                } else {
+                    status.textContent = '✗ Введите корректный email';
+                }
                 status.className = 'email-status error';
                 btn.disabled = true;
             }
@@ -595,16 +641,22 @@
 
         function validateEmailBlur(input) {
             const val = input.value.trim();
-            if (val && !emailRe.test(val)) {
+            if (!val) return;
+            const result = checkEmail(val);
+            if (!result.ok) {
                 const status = document.getElementById('emailStatus');
-                status.textContent = '✗ Проверьте формат: example@mail.ru';
+                if (result.reason === 'domain') {
+                    status.textContent = `✗ Домен «${result.domain}» не поддерживается. Используйте Gmail, Яндекс, Mail.ru и др.`;
+                } else {
+                    status.textContent = '✗ Проверьте формат: example@gmail.com';
+                }
                 status.className = 'email-status error';
             }
         }
 
         function handleSubmit() {
             const input = document.getElementById('emailInput');
-            if (!emailRe.test(input.value.trim())) return;
+            if (!checkEmail(input.value.trim()).ok) return;
 
             const formWrap = document.getElementById('formWrap');
             const successState = document.getElementById('successState');
